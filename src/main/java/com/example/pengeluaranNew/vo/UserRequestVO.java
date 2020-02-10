@@ -1,29 +1,22 @@
 package com.example.pengeluaranNew.vo;
 
+import javax.validation.constraints.NotBlank;
 import lombok.Data;
-import lombok.Setter;
-import lombok.Getter;
-
 
 @Data
-@Setter
-@Getter
 public class UserRequestVO {
-    private String name;
-    private String address;
-    private String phone;
-    private String email;
 
-    public UserRequestVO(){
+    @NotBlank(message = "Name can't be empty")
+        private String name;
 
-    }
+        private String address;    
 
-    public UserRequestVO(String name,String address,String phone,String email)
-    {
-        this.name=name;
-        this.address=address;
-        this.phone=phone;
-        this.email=email;
-    }
+    @NotBlank(message = "Phone can't be empty")
+        private String phone;  
+        
+    @NotBlank(message = "Email can't be empty")
+        private String email;    
+
+    public UserRequestVO(){}    
 
 }
