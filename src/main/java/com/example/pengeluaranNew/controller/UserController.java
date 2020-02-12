@@ -3,6 +3,8 @@ package com.example.pengeluaranNew.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.example.pengeluaranNew.domain.User;
 import com.example.pengeluaranNew.service.UserService;
 import com.example.pengeluaranNew.vo.UserRequestVO;
@@ -39,7 +41,7 @@ public class UserController {
 
     @PostMapping(value = "/add")
     @ResponseBody
-    public ResponseEntity<UserResultVO> add(@RequestBody UserRequestVO vo) {
+    public ResponseEntity<UserResultVO> add(@RequestBody @Valid UserRequestVO vo) {
         String result = userService.add(vo);
         UserResultVO resultVO = new UserResultVO();
         resultVO.setResults(result);

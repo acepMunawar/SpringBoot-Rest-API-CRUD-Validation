@@ -1,39 +1,32 @@
 package com.example.pengeluaranNew.domain;
 
-import java.util.UUID;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
 import javax.persistence.Table;
-
+import javax.persistence.Id;
 import lombok.Data;
+import java.util.UUID;
+
+import org.hibernate.annotations.DynamicUpdate;
+
 
 @Table(name = "USER")
-@Entity
 @Data
-public class User {
+@DynamicUpdate
+@Entity
+public class User extends Base {
 
-    @Id
-    @Column(name = "UUID", length = 36, unique = true, nullable = false)
-    private String uuid;
-
-    @Column(name = "NAME", nullable = false)
+    @Column(name = "NAME")
     private String name;
 
-    @Column(name = "ADDRESS", nullable = false)
+    @Column(name = "ADDRESS")
     private String address;
 
-    @Column(name = "EMAIL", nullable = false)
+    @Column(name = "EMAIL")
     private String email;
 
-    @Column(name = "PHONE", nullable = false)
+    @Column(name = "PHONE")
     private String phone;
 
-    @PrePersist
-    public void prePersist() {
-        this.uuid = UUID.randomUUID().toString();
-    }
 
 }
