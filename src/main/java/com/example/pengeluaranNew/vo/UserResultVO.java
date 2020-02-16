@@ -5,16 +5,16 @@ import lombok.Data;
 @Data
 public class UserResultVO {
 
-    private Integer Status;
-    private String Message;
-    private Object Results;
+    private Integer status;
+    private String message;
+    private Object results;
 
     public UserResultVO() {
     }
 
-    public UserResultVO(Integer Status,String Message,Object Results ){
-        this.Status = Status;
-        this.Message = Message;
-        this.Results = Results;
+    public UserResultVO(Integer status,String message,Object results ){
+        this.status = status;
+        this.message = message;
+        this.results = results;
     }
 }

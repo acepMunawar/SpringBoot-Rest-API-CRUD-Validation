@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 public class GlobalDefaultExceptionHandler{
     private static final Logger log = LoggerFactory.getLogger(GlobalDefaultExceptionHandler.class);
 
+    @ExceptionHandler(value = {MethodArgumentNotValidException.class})
     public ResponseEntity<?> notValidHandler(HttpServletRequest req, MethodArgumentNotValidException ex){
         log.error(String. format("%s : Caught in Global Exception Handler for req: %s", ex.getLocalizedMessage(), req.getRequestURL()));
             String errors;

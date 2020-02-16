@@ -2,6 +2,8 @@ package com.example.pengeluaranNew.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import com.example.pengeluaranNew.domain.User;
 import com.example.pengeluaranNew.enums.StatusCode;
 import com.example.pengeluaranNew.exception.UserException;
@@ -31,20 +33,15 @@ public class UserService {
     // getlist buat ambil data
 
     public String add(UserRequestVO vo) {
-        String message = userValidator.UserValidator(vo);
+        String message = userValidator.validateUser(vo);
         if(message!=null) throw new UserException(message, HttpStatus.BAD_REQUEST, StatusCode.ERROR);
         User user = new User();
         user.setName(vo.getName());
         user.setAddress(vo.getAddress());
         user.setPhone(vo.getPhone());
-        user.setEmail(vo.getEmail());
-        try{
+        user.setEmail(vo.getEmail());      
             userRepository.save(user);
-        }
-        catch(Exception e){
-            throw new UserException(e.getMessage(), HttpStatus.BAD_REQUEST, StatusCode.ERROR);
-        }
-        
+     
 
         return "User Added Successfully";
     }

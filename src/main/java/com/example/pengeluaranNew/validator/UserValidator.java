@@ -16,50 +16,50 @@ import org.springframework.stereotype.Component;
 public class UserValidator extends BaseValidator{
 
 @Autowired
-UserRepository userRepository;
-
-@Autowired
 MandatoryValidator mandatoryValidator;
 
 
-    // public String validateAdd(UserRequestVO vo){
+@Autowired
+UserRepository userRepository;
 
-    //     User model = userRepository.findByEmail(vo.getEmail());
-    //     if(model!=null){
-    //         return "Email already exist";
-    //     }
+// public String validateUser(UserRequestVO vo){
 
-    //     return null;
-    // }
+//     User model = userRepository.findByEmail(vo.getEmail());
+//     if(model!=null){
+//         return "Email is already registered";
+//     }
+
+//     return "null";
+// }
 
 
-    public <T> String UserValidator(UserRequestVO vo) {
+public <T> String validateUser(UserRequestVO vo) {
         Map<String, T> mandatories = new HashMap();
         mandatories.put("Name", (T) vo.getName());
         mandatories.put("Address", (T) vo.getAddress());
         mandatories.put("Email", (T) vo.getEmail());
-        mandatories.put("phone", (T) vo.getPhone());
+        mandatories.put("Phone", (T) vo.getPhone());
         String mandatoryCheck = mandatoryValidator.ValidateMandatoryFields(mandatories);
         if(mandatoryCheck!=null){
             return mandatoryCheck;
         }
         // check name
-        User model = userRepository.findByName(vo.getName());
-        if(model==null){
-            return "user not found";
+        User model = userRepository.findByEmail(vo.getEmail());
+        if(model!=null){
+            return "Email already exist";
         }
         
-
         return null;
 
     }
-    public String validateTransaksi2(UserRequestVO vo){
-        if(ValidationUtil.isEmptyOrNull(vo.getName())) return "Name can't be empty";
-        if(ValidationUtil.isEmptyOrNull(vo.getAddress())) return "Address can't be empty";
-        if(ValidationUtil.isEmptyOrNull(vo.getEmail())) return "Email can't be empty";
-        if(ValidationUtil.isEmptyOrNull(vo.getPhone())) return "Phone transaksi can't be empty";
-        return null;
+
+    // public String validateUser(UserRequestVO vo){
+    //     if(ValidationUtil.isEmptyOrNull(vo.getName())) return "User id can't be empty";
+    //     if(ValidationUtil.isEmptyOrNull(vo.getAddress())) return "Pengeluaran id can't be empty";
+    //     if(ValidationUtil.isEmptyOrNull(vo.getPhone())) return "Amount can't be empty";
+    //     if(ValidationUtil.isEmptyOrNull(vo.getEmail())) return "Detail transaksi can't be empty";
+    //     return null;
         
-    }
+    // }
 
 }
