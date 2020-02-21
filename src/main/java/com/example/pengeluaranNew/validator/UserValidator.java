@@ -22,44 +22,44 @@ MandatoryValidator mandatoryValidator;
 @Autowired
 UserRepository userRepository;
 
-// public String validateUser(UserRequestVO vo){
+public String validateUser(UserRequestVO vo){
 
-//     User model = userRepository.findByEmail(vo.getEmail());
-//     if(model!=null){
-//         return "Email is already registered";
-//     }
-
-//     return "null";
-// }
-
-
-public <T> String validateUser(UserRequestVO vo) {
-        Map<String, T> mandatories = new HashMap();
-        mandatories.put("Name", (T) vo.getName());
-        mandatories.put("Address", (T) vo.getAddress());
-        mandatories.put("Email", (T) vo.getEmail());
-        mandatories.put("Phone", (T) vo.getPhone());
-        String mandatoryCheck = mandatoryValidator.ValidateMandatoryFields(mandatories);
-        if(mandatoryCheck!=null){
-            return mandatoryCheck;
-        }
-        // check name
-        User model = userRepository.findByEmail(vo.getEmail());
-        if(model!=null){
-            return "Email already exist";
-        }
-        
-        return null;
-
+    User model = userRepository.findByEmail(vo.getEmail());
+    if(model!=null){
+        return "Email already exist";
     }
 
-    // public String validateUser(UserRequestVO vo){
-    //     if(ValidationUtil.isEmptyOrNull(vo.getName())) return "User id can't be empty";
-    //     if(ValidationUtil.isEmptyOrNull(vo.getAddress())) return "Pengeluaran id can't be empty";
-    //     if(ValidationUtil.isEmptyOrNull(vo.getPhone())) return "Amount can't be empty";
-    //     if(ValidationUtil.isEmptyOrNull(vo.getEmail())) return "Detail transaksi can't be empty";
-    //     return null;
+    return "null";
+}
+
+
+// public <T> String validateUser(UserRequestVO vo) {
+//         Map<String, T> mandatories = new HashMap();
+//         mandatories.put("Name", (T) vo.getName());
+//         mandatories.put("Address", (T) vo.getAddress());
+//         mandatories.put("Email", (T) vo.getEmail());
+//         mandatories.put("Phone", (T) vo.getPhone());
+//         String mandatoryCheck = mandatoryValidator.ValidateMandatoryFields(mandatories);
+//         if(mandatoryCheck!=null){
+//             return mandatoryCheck;
+//         }
+//         // check name
+//         User model = userRepository.findByEmail(vo.getEmail());
+//         if(model!=null){
+//             return "Email already exist";
+//         }
         
-    // }
+//         return null;
+
+//     }
+
+//     public String validateUser(UserRequestVO vo){
+//         if(ValidationUtil.isEmptyOrNull(vo.getName())) return "User id can't be empty";
+//         if(ValidationUtil.isEmptyOrNull(vo.getAddress())) return "Pengeluaran id can't be empty";
+//         if(ValidationUtil.isEmptyOrNull(vo.getPhone())) return "Amount can't be empty";
+//         if(ValidationUtil.isEmptyOrNull(vo.getEmail())) return "Detail transaksi can't be empty";
+//         return null;
+        
+//     }
 
 }

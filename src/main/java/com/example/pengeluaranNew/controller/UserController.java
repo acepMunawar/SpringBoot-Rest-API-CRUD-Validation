@@ -41,7 +41,7 @@ public class UserController {
 
     @PostMapping(value = "/add")
     @ResponseBody
-    public ResponseEntity<UserResultVO> add(@RequestBody UserRequestVO vo) {
+    public ResponseEntity<UserResultVO> add(@RequestBody @Valid UserRequestVO vo) {
         String result = userService.add(vo);
         UserResultVO resultVO = new UserResultVO();
         resultVO.setResults(result);

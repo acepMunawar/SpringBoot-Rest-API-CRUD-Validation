@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
 public class GlobalDefaultExceptionHandler{
+
     private static final Logger log = LoggerFactory.getLogger(GlobalDefaultExceptionHandler.class);
 
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
